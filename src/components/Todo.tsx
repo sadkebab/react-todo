@@ -56,7 +56,7 @@ export const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
       <div className={twMerge(className, 'p-2 rounded-md bg-cyan-300 shadow-md')}>
         <div className='flex justify-between'>
           <h2>Todos:</h2>
-          <button className='' onClick={() => dispatch(clear())}>🗑️</button>
+          <button className='outline-indigo-300' onClick={() => dispatch(clear())}>🗑️</button>
         </div>
         <ul ref={parent} className='mt-2 flex flex-col gap-1'>
           {todos.length > 0 && todos.map((todo) =>
