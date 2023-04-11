@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { add, remove } from './app/todoSlice';
 import { RootState } from './app/store'
-import { KeyboardEventHandler, MouseEventHandler, useCallback, useRef } from 'react';
+import { KeyboardEventHandler, MouseEventHandler, useCallback, useEffect, useRef } from 'react';
+import autoAnimate from '@formkit/auto-animate';
 
 function App() {
 
@@ -30,21 +31,21 @@ function TodoForm() {
     addTodo()
   }, [])
 
-  const onAdd: MouseEventHandler<HTMLInputElement> = useCallback((clickEvent) => {
+  const onAdd: MouseEventHandler<HTMLButtonElement> = useCallback((clickEvent) => {
     addTodo();
   }, [])
 
   return (
     <div className='min-w-[320px] max-w-[320px] p-4 rounded-md bg-slate-700 shadow-md flex gap-1'>
       <input
-        className='w-11/12 rounded-sm p-1 font-normal'
+        className='w-11/12 rounded-sm p-1 font-normal outline-indigo-300'
         ref={inputRef}
         type="text"
         name="text"
         id="text"
         placeholder='write a todo'
         onKeyDown={onEnter} />
-      <button className='w-2/12 rounded-sm p-1 font-normal bg-yellow-100'>➕</button>
+      <button className='w-2/12 rounded-sm p-1 font-normal outline-indigo-300 bg-yellow-100' onClick={onAdd}>➕</button>
     </div>
   )
 }
@@ -52,11 +53,20 @@ function TodoForm() {
 function TodoList() {
   const todos = useSelector((state: RootState) => state.todo.list)
   const dispatch = useDispatch()
+  const parent = useRef(null)
+
+  useEffect(() => {
+    const animationConfig = {
+      duration: 100,
+      easing: 'ease-out',
+    }
+    parent.current && autoAnimate(parent.current, animationConfig)
+  }, [parent])
 
   return (
     <div className='p-4 rounded-md bg-slate-700 min-w-[320px] max-w-[320px] shadow-md'>
       <h2 className='text-slate-200'>Todos:</h2>
-      <ul className='mt-2 flex flex-col gap-2'>
+      <ul ref={parent} className='mt-2 flex flex-col gap-2'>
         {todos.length > 0 && todos.map((todo) =>
           <li key={todo.id} className='bg-slate-400 p-2 rounded-md shadow-sm flex flex-row justify-between items-start'>
             <div className='max-w-[200px] break-words'>
@@ -67,7 +77,7 @@ function TodoList() {
               onClick={() => dispatch(remove(todo.id))}>
               x
             </div>
-          </li>) || <p className='text-slate-100'>Todo list is empty...</p>}
+          </li>) || <li className='text-slate-100'>Todo list is empty...</li>}
 
       </ul>
     </div>
