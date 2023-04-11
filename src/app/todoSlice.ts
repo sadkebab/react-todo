@@ -35,9 +35,13 @@ export const todoSlice = createSlice({
         return p
       }, [] as Todo[])
     },
+    clear: (state) => {
+      state.list = []
+      state.nextId = 1
+    }
   },
 })
 
-export const { add, remove } = todoSlice.actions
+export const { add, remove, clear } = todoSlice.actions
 
 export default todoSlice.reducer
