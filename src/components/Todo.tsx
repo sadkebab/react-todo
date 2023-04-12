@@ -61,7 +61,7 @@ export const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
     <div className={twMerge(className, 'p-2 rounded-md bg-cyan-300 shadow-md')}>
       <TodoToolbar />
       <ul ref={todoContainerRef} className='mt-2 flex flex-col gap-1'>
-        {todos.length > 0 && todos.filter(t => searchText.trim() === '' || t.text.toLowerCase().includes(searchText.trim())).map((todo) =>
+        {todos.length > 0 && todos.filter(item => searchText.trim() === '' || item.text.toLowerCase().includes(searchText.trim())).map((todo) =>
           <li key={todo.id} className='bg-cyan-100 p-2 rounded-md shadow-sm flex flex-row justify-between items-start'>
             <div className='break-words max-w-[550px]'>
               <p>{todo.text}</p>
