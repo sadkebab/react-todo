@@ -17,8 +17,8 @@ export const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const addTodo = useCallback(() => {
-    if (inputRef.current && inputRef.current.value.length > 0) {
-      dispatch(add(inputRef.current.value))
+    if (inputRef.current && inputRef.current.value.trim().length > 0) {
+      dispatch(add(inputRef.current.value.trim()))
       inputRef.current.value = ""
     }
   }, [])
