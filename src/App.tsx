@@ -2,9 +2,9 @@ import Credits from './components/Credits';
 import { TodoForm, TodoList } from './components/Todo';
 
 const App = () => {
-  
+
   return (
-    <div className='antialiased w-full min-h-screen flex flex-col items-center bg-lime-100 p-4'>
+    <div className='antialiased w-full min-h-screen flex flex-col items-center bg-slate-100 p-4'>
       <div className='lg:mt-10 w-full sm:w-[600px]'>
         <h1 className='text-2xl sm:text-3xl drop-shadow-sm'>yet another todo app...</h1>
         <Credits
