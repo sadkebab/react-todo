@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import todoReducer from "./todoSlice"
-import storage from "redux-persist/lib/storage";
+import toolbarReducer from "./toolbarSlice"
+import storage from "redux-persist/lib/storage"
 import {
     persistReducer,
     FLUSH,
@@ -12,11 +13,11 @@ import {
 } from 'redux-persist';
 
 const persistConfig = {
-    key: 'todos',
+    key: 'todo-app',
     storage,
 };
 
-const reducers = combineReducers({ todo: todoReducer });
+const reducers = combineReducers({ todo: todoReducer, toolbar: toolbarReducer });
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
