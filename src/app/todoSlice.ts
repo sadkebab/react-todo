@@ -4,6 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface Todo {
   id: number,
   text: string
+  status: 'open' | 'completed'
 }
 
 export interface TodoState {
@@ -23,7 +24,8 @@ export const todoSlice = createSlice({
     add: (state, action: PayloadAction<string>) => {
       const newTodo: Todo = {
         id: state.nextId,
-        text: action.payload
+        text: action.payload,
+        status: 'open'
       }
 
       state.nextId += 1
@@ -40,10 +42,19 @@ export const todoSlice = createSlice({
     clear: (state) => {
       state.list = []
       state.nextId = 1
+    },
+
+    toggleStatus: (state, action: PayloadAction<number>) => {
+      state.list = state.list.map((todo) => {
+        if (todo.id == action.payload) {
+          todo.status = todo.status == 'open' ? 'completed' : 'open'
+        }
+        return todo
+      })
     }
   },
 })
 
-export const { add, remove, clear } = todoSlice.actions
+export const { add, remove, clear, toggleStatus } = todoSlice.actions
 
 export default todoSlice.reducer

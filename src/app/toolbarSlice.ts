@@ -4,10 +4,12 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface ToolbarState {
   searchText: string
+  showCompleted: boolean
 }
 
 const initialState: ToolbarState = {
-  searchText: ''
+  searchText: '',
+  showCompleted: true
 }
 
 export const toolbarSlice = createSlice({
@@ -17,9 +19,13 @@ export const toolbarSlice = createSlice({
     updateSearch: (state, action: PayloadAction<string>) => {
       state.searchText = action.payload
     },
+
+    toggleShowCompleted: (state) => {
+      state.showCompleted = !state.showCompleted
+    }
   },
 })
 
-export const { updateSearch } = toolbarSlice.actions
+export const { updateSearch, toggleShowCompleted } = toolbarSlice.actions
 
 export default toolbarSlice.reducer
