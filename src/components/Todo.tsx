@@ -22,8 +22,9 @@ export const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
   }, [])
 
   const onAdd: MouseEventHandler<HTMLButtonElement> = useCallback((clickEvent) => {
-    addTodo();
+    addTodo()
   }, [])
+  
   return (
     <div className={twMerge(className, 'p-1 rounded-md bg-cyan-700 shadow-md gap-1 flex space-between')}>
       <input

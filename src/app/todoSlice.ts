@@ -29,12 +29,14 @@ export const todoSlice = createSlice({
       state.nextId += 1
       state.list = [...state.list, newTodo]
     },
+    
     remove: (state, action: PayloadAction<number>) => {
       state.list = state.list.reduce((p, n) => {
         if (n.id != action.payload) p.push(n)
         return p
       }, [] as Todo[])
     },
+
     clear: (state) => {
       state.list = []
       state.nextId = 1

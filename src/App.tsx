@@ -1,9 +1,8 @@
-
 import Credits from './components/Credits';
 import { TodoForm, TodoList } from './components/Todo';
 
 const App = () => {
-
+  
   return (
     <div className='antialiased w-full min-h-screen flex flex-col items-center bg-lime-100 p-2'>
       <div className='mt-10 w-full sm:w-[600px]'>
