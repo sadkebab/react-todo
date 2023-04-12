@@ -21,7 +21,7 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<string>) => {
-      const newTodo:Todo = { 
+      const newTodo: Todo = {
         id: state.nextId,
         text: action.payload
       }
@@ -29,9 +29,9 @@ export const todoSlice = createSlice({
       state.nextId += 1
       state.list = [...state.list, newTodo]
     },
-    remove: (state, action: PayloadAction<number> ) => {
-      state.list = state.list.reduce((p,n)=> {
-        if(n.id != action.payload) p.push(n)
+    remove: (state, action: PayloadAction<number>) => {
+      state.list = state.list.reduce((p, n) => {
+        if (n.id != action.payload) p.push(n)
         return p
       }, [] as Todo[])
     },

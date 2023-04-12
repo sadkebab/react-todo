@@ -12,7 +12,7 @@ const Credits: React.FC<CreditsProps> = ({ className, iconSize, githubLink, link
     <div className={twMerge(className, 'flex flex-row justify-between')}>
       <div>
         <p>made by</p>
-        <div className="flex flex-row gap-1">
+        <div className='flex flex-row gap-1'>
           <a href={githubLink} target="_blank"><Github size={iconSize} /></a>
           <a href={linkedinLink} target="_blank"><LinkedIn size={iconSize} /></a>
         </div>
@@ -20,7 +20,7 @@ const Credits: React.FC<CreditsProps> = ({ className, iconSize, githubLink, link
 
       <div>
         <p>made with</p>
-        <div className="flex flex-row gap-1">
+        <div className='flex flex-row gap-1'>
           <React size={iconSize} />
           <Redux size={iconSize} />
           <Tailwind size={iconSize} />
