@@ -18,7 +18,7 @@ export const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
       }
       todoContainerRef.current && autoAnimate(todoContainerRef.current, animationConfig)
     }, [todoContainerRef])
-  
+
     return (
       <div className={t(className, 'p-2 rounded-md bg-cyan-300 shadow-md')}>
         <TodoToolbar />
@@ -58,6 +58,7 @@ export const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
   
     return (
       <li
+        draggable
         className={`${todo.status === 'open' ? 'bg-cyan-100' : 'bg-gray-100/50'} p-2 rounded-md shadow-sm flex flex-row justify-between items-start`}
         onClick={statusAction}>
         <div className='break-words max-w-[550px]'>

@@ -57,7 +57,7 @@ export const todoSlice = createSlice({
       state.list = state.list.filter((todo) => todo.status != 'completed')
     },
 
-    reorder: (state) => {
+    reorderById: (state) => {
       const sorted = state.list.some((todo, i, a) => {
         if(i==0) return false
         return todo.id<a[i-1].id
@@ -65,10 +65,19 @@ export const todoSlice = createSlice({
       console.log(sorted)
       if(sorted) state.list = state.list.sort((a, b) => a.id - b.id)
       else state.list = state.list.sort((a, b) => b.id - a.id)
+    },
+
+    reorderByStatus: (state) => {
+      const sorted = state.list.some((todo, i, a) => {
+        if(i==0) return false
+        return todo.status == 'open' && a[i-1].status == 'completed'
+      })
+      if(sorted) state.list = state.list.sort((a, b) => a.status == 'open' ? -1 : 1)
+      else state.list = state.list.sort((a, b) => a.status == 'open' ? 1 : -1)
     }
   },
 })
 
-export const { add, remove, clear, clearCompleted, toggleStatus, reorder } = todoSlice.actions
+export const { add, remove, clear, clearCompleted, toggleStatus, reorderById, reorderByStatus } = todoSlice.actions
 
 export default todoSlice.reducer
