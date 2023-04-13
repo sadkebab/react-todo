@@ -1,5 +1,5 @@
 import { HTMLProps } from "react"
-import { twMerge } from "tailwind-merge"
+import { twMerge as t } from "tailwind-merge"
 
 interface CreditsProps extends HTMLProps<HTMLDivElement> {
   iconSize: number,
@@ -9,7 +9,7 @@ interface CreditsProps extends HTMLProps<HTMLDivElement> {
 
 const Credits: React.FC<CreditsProps> = ({ className, iconSize, githubLink, linkedinLink }) => {
   return (
-    <div className={twMerge(className, 'flex flex-row justify-between')}>
+    <div className={t(className, 'flex flex-row justify-between')}>
       <div>
         <p>made by</p>
         <div className='flex flex-row gap-1'>
@@ -17,7 +17,7 @@ const Credits: React.FC<CreditsProps> = ({ className, iconSize, githubLink, link
           <a href={linkedinLink} target="_blank" className="active:scale-95 outline-indigo-300"><LinkedIn size={iconSize} /></a>
         </div>
       </div>
-
+      
       <div>
         <p>made with</p>
         <div className='flex flex-row gap-1'>

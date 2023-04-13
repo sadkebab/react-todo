@@ -51,10 +51,24 @@ export const todoSlice = createSlice({
         }
         return todo
       })
+    },
+
+    clearCompleted: (state) => {
+      state.list = state.list.filter((todo) => todo.status != 'completed')
+    },
+
+    reorder: (state) => {
+      const sorted = state.list.some((todo, i, a) => {
+        if(i==0) return false
+        return todo.id<a[i-1].id
+      })
+      console.log(sorted)
+      if(sorted) state.list = state.list.sort((a, b) => a.id - b.id)
+      else state.list = state.list.sort((a, b) => b.id - a.id)
     }
   },
 })
 
-export const { add, remove, clear, toggleStatus } = todoSlice.actions
+export const { add, remove, clear, clearCompleted, toggleStatus, reorder } = todoSlice.actions
 
 export default todoSlice.reducer

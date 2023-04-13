@@ -1,5 +1,6 @@
 import Credits from './components/Credits';
-import { TodoForm, TodoList } from './components/Todo';
+import { TodoForm } from './components/todo/TodoForm';
+import { TodoList } from './components/todo/TodoList';
 
 const App = () => {
 
