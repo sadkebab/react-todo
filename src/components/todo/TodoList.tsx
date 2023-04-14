@@ -9,7 +9,7 @@ import { DndContext, DragEndEvent, PointerSensor, useDroppable, useSensor, useSe
 import { CSS } from '@dnd-kit/utilities'
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
-export const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
+const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
   const todos = useSelector((state: RootState) => state.todo.list)
   const dispatch = useDispatch()
   const { searchText, showCompleted } = useSelector((state: RootState) => state.toolbar)
@@ -119,3 +119,5 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
     </li>
   )
 }
+
+export default TodoList
