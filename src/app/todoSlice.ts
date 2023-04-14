@@ -31,7 +31,7 @@ export const todoSlice = createSlice({
       state.nextId += 1
       state.list = [...state.list, newTodo]
     },
-    
+
     remove: (state, action: PayloadAction<number>) => {
       state.list = state.list.reduce((p, n) => {
         if (n.id != action.payload) p.push(n)
@@ -59,25 +59,42 @@ export const todoSlice = createSlice({
 
     reorderById: (state) => {
       const sorted = state.list.some((todo, i, a) => {
-        if(i==0) return false
-        return todo.id<a[i-1].id
+        if (i == 0) return false
+        return todo.id < a[i - 1].id
       })
-      console.log(sorted)
-      if(sorted) state.list = state.list.sort((a, b) => a.id - b.id)
+      if (sorted) state.list = state.list.sort((a, b) => a.id - b.id)
       else state.list = state.list.sort((a, b) => b.id - a.id)
     },
 
     reorderByStatus: (state) => {
       const sorted = state.list.some((todo, i, a) => {
-        if(i==0) return false
-        return todo.status == 'open' && a[i-1].status == 'completed'
+        if (i == 0) return false
+        return todo.status == 'open' && a[i - 1].status == 'completed'
       })
-      if(sorted) state.list = state.list.sort((a, b) => a.status == 'open' ? -1 : 1)
+      if (sorted) state.list = state.list.sort((a, b) => a.status == 'open' ? -1 : 1)
       else state.list = state.list.sort((a, b) => a.status == 'open' ? 1 : -1)
+    },
+
+    swap: (state, action: PayloadAction<{ one: number, other: number }>) => {
+      const { one, other } = action.payload
+      const clone = [...state.list]
+      const temp = clone[one]
+      clone[one] = clone[other]
+      clone[other] = temp
+      state.list = clone
     }
   },
 })
 
-export const { add, remove, clear, clearCompleted, toggleStatus, reorderById, reorderByStatus } = todoSlice.actions
+export const {
+  add,
+  remove,
+  clear,
+  clearCompleted,
+  toggleStatus,
+  reorderById,
+  reorderByStatus,
+  swap
+} = todoSlice.actions
 
 export default todoSlice.reducer

@@ -10,15 +10,15 @@ import {
     PERSIST,
     PURGE,
     REGISTER,
-} from 'redux-persist';
+} from 'redux-persist'
 
 const persistConfig = {
     key: 'todo-app',
     storage,
-};
+}
 
-const reducers = combineReducers({ todo: todoReducer, toolbar: toolbarReducer });
-const persistedReducer = persistReducer(persistConfig, reducers);
+const reducers = combineReducers({ todo: todoReducer, toolbar: toolbarReducer })
+const persistedReducer = persistReducer(persistConfig, reducers)
 
 export const store = configureStore({
     reducer: persistedReducer,

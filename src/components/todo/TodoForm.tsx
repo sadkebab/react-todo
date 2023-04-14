@@ -1,11 +1,11 @@
-import { HTMLProps, KeyboardEventHandler, MouseEventHandler, useCallback, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { add } from "../../app/todoSlice";
-import { twMerge as t } from "tailwind-merge";
+import { HTMLProps, KeyboardEventHandler, MouseEventHandler, useCallback, useRef } from "react"
+import { useDispatch } from "react-redux"
+import { add } from "../../app/todoSlice"
+import { twMerge as t } from "tailwind-merge"
 
 export const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
     const dispatch = useDispatch()
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null)
   
     const addTodo = useCallback(() => {
       if (inputRef.current && inputRef.current.value.trim().length > 0) {
