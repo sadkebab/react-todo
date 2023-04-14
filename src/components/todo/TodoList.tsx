@@ -52,7 +52,6 @@ export const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
   const completeFilter = useCallback((item: Todo) => showCompleted || item.status === 'open', [showCompleted])
 
   return (
-
     <div className={t(className, 'p-2 rounded-md bg-cyan-300 shadow-md')}>
       <TodoToolbar />
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
@@ -102,7 +101,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
     <li
       ref={setNodeRef}
       className={
-        t(todo.status === 'open' ? 'bg-cyan-100' : 'bg-gray-100/50','p-2 cursor-grab rounded-md shadow-sm flex flex-row justify-between select-none touch-none')
+        t(todo.status === 'open' ? 'bg-cyan-100' : 'bg-gray-100/50', 'p-2 cursor-grab rounded-md shadow-sm flex flex-row justify-between select-none touch-none')
       }
       style={style}
       onClick={statusAction}
