@@ -34,7 +34,7 @@ export const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => 
           placeholder='write a todo'
           onKeyDown={onEnter} />
         <button 
-          className='w-2/12 rounded-sm font-normal outline-indigo-300 bg-cyan-200 active:scale-95 flex justify-center items-center' 
+          className='w-2/12 rounded-sm font-normal outline-indigo-300 bg-cyan-200 active:scale-95 flex justify-center items-center select-none' 
           onClick={onAdd}>
           ➕
         </button>

@@ -32,7 +32,7 @@ export const TodoToolbar: React.FC = () => {
                     className='text-sm w-full px-2 py-2 xs:py-0 outline-indigo-300 rounded-sm bg-cyan-100 border border-cyan-400 shadow-inner placeholder-black placeholder-opacity-40'
                     onChange={onSearchTextChange}
                     placeholder='🔍' />
-                <div className="flex flex-row gap-1 justify-between flex-wrap xs:flex-nowrap">
+                <div className="flex flex-row gap-1 justify-between flex-wrap xs:flex-nowrap select-none">
                     <ToolbarButton className={!showCompleted && 'opacity-50'} icon="✔️" onClick={() => dispatch(toggleShowCompleted())} />
                     <ToolbarButton icon="🕣" onClick={() => dispatch(reorderById())} />
                     <ToolbarButton icon="🔀" onClick={() => dispatch(reorderByStatus())} />
