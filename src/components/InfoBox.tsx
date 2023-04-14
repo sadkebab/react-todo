@@ -17,7 +17,7 @@ const InfoBox: React.FC<{ className?: string, children: string }> = ({ className
             <div className='w-full flex flex-row justify-end'>
                 <button
                     onClick={() => setInfoOpen(!infoOpen)}
-                    className={t(!infoOpen && 'rounded-b-md', 'block p-2 bg-cyan-100 shadow-md rounded-t-md active:shadow-inner')}>
+                    className={t(!infoOpen && 'rounded-b-md', 'block p-2 bg-cyan-100 shadow-md rounded-t-md active:shadow-inner select-none')}>
                     <p>{infoOpen ? '🔼' : 'ℹ️'}</p>
                 </button>
             </div>
