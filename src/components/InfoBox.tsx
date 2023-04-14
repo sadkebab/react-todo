@@ -21,7 +21,7 @@ const InfoBox: React.FC<{ className?: string, children: string }> = ({ className
                     <p>{infoOpen ? '🔼' : 'ℹ️'}</p>
                 </button>
             </div>
-            {infoOpen && <ul className='p-2 -mt-1 bg-cyan-100 shadow-md z-50 relative rounded-b-md rounded-tl-md'>
+            {infoOpen && <ul className='px-2 pt-2 pb-1 -mt-1 bg-cyan-100 shadow-md z-50 relative rounded-b-md rounded-tl-md'>
                 <Info border>➕ and ⏎ key add a todo</Info>
                 <Info border>🖱️ click on a todo to mark it as completed</Info>
                 <Info border>➰ drag and drop to reorder</Info>
