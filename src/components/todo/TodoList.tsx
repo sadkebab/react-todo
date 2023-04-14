@@ -110,7 +110,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
       {...listeners}
     >
       <div className='break-words max-w-[550px]'>
-        <p>{todo.status === 'completed' && '✔️ '}{todo.text}</p>
+        <p>{todo.status === 'completed' && '✔️'} {todo.text}</p>
       </div>
       <button
         className='text-center active:scale-95 cursor-pointer outline-indigo-300'
