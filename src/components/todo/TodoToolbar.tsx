@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../app/store"
-import { useCallback, useEffect, useRef } from "react"
+import { ReactNode, useCallback, useEffect, useRef } from "react"
 import { throttle } from "../../app/utils"
 import { toggleShowCompleted, updateSearch } from "../../app/toolbarSlice"
 import { clear, clearCompleted, reorderById, reorderByStatus } from "../../app/todoSlice"
 import { twMerge as t } from "tailwind-merge"
+import { Check, CheckSquare, Clock, ListChecks, Search, SortAsc, Trash, Trash2 } from "lucide-react"
 
 export const TodoToolbar: React.FC = () => {
     const { searchText, showCompleted } = useSelector((state: RootState) => state.toolbar)
@@ -26,18 +27,31 @@ export const TodoToolbar: React.FC = () => {
     return (
         <div className="flex flex-col gap-1">
             <div className='flex flex-col xs:flex-row justify-between gap-1'>
-                <input
+                <div className="flex flex-row items-center w-full gap-1 bg-slate-600 rounded-sm p-1">
+                    <Search stroke="rgb(241,245,249)" className="w-5"/>
+                    <input
                     ref={searchInputRef}
                     type='text'
-                    className='text-sm w-full px-2 py-2 xs:py-0 outline-indigo-300 rounded-sm bg-cyan-100 border border-cyan-400 shadow-inner placeholder-black placeholder-opacity-40'
+                    className='text-sm w-full xs:py-0 h-full outline-slate-500 outline-1 bg-slate-600 shadow-inner placeholder-black placeholder-opacity-40 text-slate-100'
                     onChange={onSearchTextChange}
-                    placeholder='🔍' />
-                <div className="flex flex-row gap-1 justify-between flex-wrap xs:flex-nowrap select-none">
-                    <ToolbarButton className={!showCompleted && 'opacity-50'} icon="✔️" onClick={() => dispatch(toggleShowCompleted())} />
-                    <ToolbarButton icon="🕣" onClick={() => dispatch(reorderById())} />
-                    <ToolbarButton icon="🔀" onClick={() => dispatch(reorderByStatus())} />
-                    <ToolbarButton icon="🧹" onClick={() => dispatch(clearCompleted())} />
-                    <ToolbarButton icon="🗑️" onClick={() => dispatch(clear())} />
+                    />
+                </div>
+                <div className="flex gap-1 flex-wrap xs:flex-nowrap select-none">
+                    <ToolbarButton className={!showCompleted && 'opacity-50'} onClick={() => dispatch(toggleShowCompleted())} >
+                        <CheckSquare stroke="rgb(241,245,249)" className="w-5" />
+                    </ToolbarButton>
+                    <ToolbarButton onClick={() => dispatch(reorderById())}>
+                        <Clock stroke="rgb(241,245,249)" className="w-5" />
+                    </ToolbarButton>
+                    <ToolbarButton onClick={() => dispatch(reorderByStatus())}>
+                        <ListChecks stroke="rgb(241,245,249)" className="w-5" />
+                    </ToolbarButton>
+                    <ToolbarButton onClick={() => dispatch(clearCompleted())}>
+                        <Trash stroke="rgb(241,245,249)" className="w-5"/>
+                    </ToolbarButton>
+                    <ToolbarButton className="mr-0" onClick={() => dispatch(clear())}>
+                        <Trash2 stroke="rgb(241,245,249)" className="w-5" />
+                    </ToolbarButton>
                 </div>
             </div>
         </div>
@@ -46,16 +60,16 @@ export const TodoToolbar: React.FC = () => {
 
 interface ToolbarButtonProps {
     className?: string | false
-    icon: string
+    children: ReactNode
     onClick: () => void
 }
 
-const ToolbarButton: React.FC<ToolbarButtonProps> = ({ className, icon, onClick }) => {
+const ToolbarButton: React.FC<ToolbarButtonProps> = ({ className, children, onClick }) => {
     return (
         <button
-            className={t(className, 'w-8 bg-cyan-100 border border-cyan-400 outline-indigo-300 p-1 rounded shadow-sm active:scale-95 active:shadow-inner')}
+            className={t(className, 'w-8 bg-slate-600 flex items-center justify-center outline-slate-500 outline-1 -outline-offset-4 p-1 rounded active:scale-95 active:shadow-inner')}
             onClick={onClick}>
-            {icon}
+            {children}
         </button>
     )
 }

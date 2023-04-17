@@ -8,6 +8,7 @@ import { twMerge as t } from "tailwind-merge"
 import { DndContext, DragEndEvent, PointerSensor, useDroppable, useSensor, useSensors } from "@dnd-kit/core"
 import { CSS } from '@dnd-kit/utilities'
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { CheckCircle, Circle, X } from "lucide-react"
 
 const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
   const todos = useSelector((state: RootState) => state.todo.list)
@@ -52,11 +53,11 @@ const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
   const completeFilter = useCallback((item: Todo) => showCompleted || item.status === 'open', [showCompleted])
 
   return (
-    <div className={t(className, 'p-2 rounded-md bg-cyan-300 shadow-md')}>
+    <div className={t(className, 'p-2 rounded-md bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-600 shadow-md')}>
       <TodoToolbar />
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
         <SortableContext items={todos} strategy={verticalListSortingStrategy}>
-          <ul ref={setRefs} className='mt-2 flex flex-col gap-1'>
+          <ul ref={setRefs} className='mt-2 flex flex-col gap-2'>
             {todos.length > 0 && todos
               .filter(completeFilter)
               .filter(searchFilter)
@@ -101,21 +102,27 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
     <li
       ref={setNodeRef}
       className={
-        t(todo.status === 'open' ? 'bg-cyan-100' : 'bg-gray-100/50', 'p-2 cursor-grab rounded-md shadow-sm flex flex-row justify-between select-none touch-none')
+        t(todo.status !== 'open' && 'bg-opacity-50', 'bg-slate-600 cursor-grab outline-slate-500  shadow-slate-800 outline-1 -outline-offset-4 rounded-md shadow-md flex flex-row justify-between select-none touch-none')
       }
       style={style}
       onClick={statusAction}
       {...attributes}
       {...listeners}
     >
-      <div className='break-words max-w-[550px]'>
-        <p>{todo.status === 'completed' && '✔️'} {todo.text}</p>
+
+      <div className="flex items-center py-4 pl-2 pr-2">
+        {todo.status === 'completed' ? <CheckCircle className="w-8" /> : <Circle className="w-8" />}
       </div>
-      <button
-        className='text-center active:scale-95 cursor-pointer outline-indigo-300'
-        onClick={deleteAction}>
-        ✖️
-      </button>
+      <div className="w-full py-4">
+        <p>{todo.text}</p>
+      </div>
+      <div className="py-1 pr-1">
+        <button
+          className='text-center active:scale-95 cursor-pointer outline-slate-500 outline-1 -outline-offset-4'
+          onClick={deleteAction}>
+          <X className="w-5"/>
+        </button>
+      </div>
     </li>
   )
 }

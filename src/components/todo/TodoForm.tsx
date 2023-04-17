@@ -2,6 +2,7 @@ import { HTMLProps, KeyboardEventHandler, MouseEventHandler, useCallback, useRef
 import { useDispatch } from "react-redux"
 import { add } from "../../app/todoSlice"
 import { twMerge as t } from "tailwind-merge"
+import { Plus } from "lucide-react"
 
 const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
   const dispatch = useDispatch()
@@ -24,9 +25,9 @@ const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
   }, [])
 
   return (
-    <div className={t(className, 'p-1 rounded-md bg-cyan-700 shadow-md gap-1 flex space-between')}>
+    <div className={t(className, 'p-1 rounded-md bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-600 shadow-md gap-1 flex space-between text-slate-100')}>
       <input
-        className='w-11/12 rounded-sm p-2 font-normal outline-indigo-300'
+        className='w-11/12 rounded-sm p-2 bg-slate-500 font-normal outline-slate-500 outline-1 -outline-offset-4 placeholder-slate-200'
         ref={inputRef}
         type="text"
         name="text"
@@ -34,9 +35,9 @@ const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
         placeholder='write a todo'
         onKeyDown={onEnter} />
       <button
-        className='w-2/12 rounded-sm font-normal outline-indigo-300 bg-cyan-200 active:scale-95 flex justify-center items-center select-none'
+        className='w-2/12 rounded-sm font-normal outline-slate-500 outline-1 -outline-offset-4 bg-slate-500 active:scale-95 flex justify-center items-center select-none'
         onClick={onAdd}>
-        ➕
+          <Plus stroke="rgb(241,245,249)" className="w-full"/>
       </button>
     </div>
   )
