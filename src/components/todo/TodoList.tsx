@@ -102,7 +102,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
     <li
       ref={setNodeRef}
       className={
-        t(todo.status !== 'open' && 'bg-opacity-50', 'bg-slate-600 cursor-grab outline-slate-500  shadow-slate-800 outline-1 -outline-offset-4 rounded-md shadow-md flex flex-row justify-between select-none touch-none')
+        t(todo.status !== 'open' && 'bg-opacity-50', 'bg-slate-600 cursor-grab outline-slate-500  shadow-slate-800 outline-1 -outline-offset-4 rounded shadow-md flex flex-row justify-between select-none touch-none')
       }
       style={style}
       onClick={statusAction}

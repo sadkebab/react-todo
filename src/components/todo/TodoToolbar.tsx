@@ -32,7 +32,7 @@ export const TodoToolbar: React.FC = () => {
                     <input
                     ref={searchInputRef}
                     type='text'
-                    className='text-sm w-full xs:py-0 h-full outline-slate-500 outline-1 bg-slate-600 shadow-inner placeholder-black placeholder-opacity-40 text-slate-100'
+                    className='w-full xs:py-0 h-full outline-slate-500 outline-1 bg-slate-600 shadow-inner placeholder-black placeholder-opacity-40 text-slate-100'
                     onChange={onSearchTextChange}
                     />
                 </div>
@@ -67,7 +67,7 @@ interface ToolbarButtonProps {
 const ToolbarButton: React.FC<ToolbarButtonProps> = ({ className, children, onClick }) => {
     return (
         <button
-            className={t(className, 'w-8 bg-slate-600 flex items-center justify-center outline-slate-500 outline-1 -outline-offset-4 p-1 rounded active:scale-95 active:shadow-inner')}
+            className={t(className, 'w-8 bg-slate-600 flex items-center justify-center outline-slate-500 outline-1 -outline-offset-4 p-1 rounded-sm active:scale-95 active:shadow-inner')}
             onClick={onClick}>
             {children}
         </button>
