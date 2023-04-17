@@ -26,17 +26,17 @@ export const TodoToolbar: React.FC = () => {
 
     return (
         <div className="flex flex-col gap-1">
-            <div className='flex flex-col xs:flex-row justify-between gap-1'>
+            <div className='flex flex-col xs:flex-row justify-between gap-2'>
                 <div className="flex flex-row items-center w-full gap-1 bg-slate-600 rounded-sm p-1">
                     <Search stroke="rgb(241,245,249)" className="w-5"/>
                     <input
                     ref={searchInputRef}
                     type='text'
-                    className='w-full xs:py-0 h-full outline-slate-500 outline-1 bg-slate-600 shadow-inner placeholder-black placeholder-opacity-40 text-slate-100'
+                    className='w-full xs:py-0 h-full outline-slate-600 outline-1 bg-slate-600 shadow-inner placeholder-black placeholder-opacity-40 text-slate-100'
                     onChange={onSearchTextChange}
                     />
                 </div>
-                <div className="flex gap-1 flex-wrap xs:flex-nowrap select-none">
+                <div className="flex gap-2 flex-wrap xs:flex-nowrap select-none">
                     <ToolbarButton className={!showCompleted && 'opacity-50'} onClick={() => dispatch(toggleShowCompleted())} >
                         <CheckSquare stroke="rgb(241,245,249)" className="w-5" />
                     </ToolbarButton>
@@ -67,7 +67,7 @@ interface ToolbarButtonProps {
 const ToolbarButton: React.FC<ToolbarButtonProps> = ({ className, children, onClick }) => {
     return (
         <button
-            className={t(className, 'w-8 bg-slate-600 flex items-center justify-center outline-slate-500 outline-1 -outline-offset-4 p-1 rounded-sm active:scale-95 active:shadow-inner')}
+            className={t(className, 'w-8 bg-slate-600 flex items-center justify-center outline-slate-600 outline-1 -outline-offset-4 p-1 rounded-sm active:scale-95 active:shadow-inner')}
             onClick={onClick}>
             {children}
         </button>

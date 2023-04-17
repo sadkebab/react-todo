@@ -102,7 +102,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
     <li
       ref={setNodeRef}
       className={
-        t(todo.status !== 'open' && 'bg-opacity-50', 'bg-slate-600 cursor-grab outline-slate-500  shadow-slate-800 outline-1 -outline-offset-4 rounded shadow-md flex flex-row justify-between select-none touch-none')
+        t(todo.status !== 'open' && 'bg-opacity-50', 'bg-slate-600 cursor-grab outline-slate-600  shadow-slate-800 outline-1 -outline-offset-4 rounded-sm shadow-md flex flex-row justify-between select-none touch-none')
       }
       style={style}
       onClick={statusAction}
@@ -111,14 +111,14 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
     >
 
       <div className="flex items-center py-4 pl-2 pr-2">
-        {todo.status === 'completed' ? <CheckCircle className="w-8" /> : <Circle className="w-8" />}
+        {todo.status === 'completed' ? <CheckCircle className="w-5" /> : <Circle className="w-5" />}
       </div>
-      <div className="w-full py-4">
+      <div className="w-full py-4 break-words">
         <p>{todo.text}</p>
       </div>
       <div className="py-1 pr-1">
         <button
-          className='text-center active:scale-95 cursor-pointer outline-slate-500 outline-1 -outline-offset-4'
+          className='text-center active:scale-95 cursor-pointer outline-slate-600 outline-1 -outline-offset-4'
           onClick={deleteAction}>
           <X className="w-5"/>
         </button>

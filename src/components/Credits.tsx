@@ -13,8 +13,8 @@ const Credits: React.FC<CreditsProps> = ({ className, iconSize, githubLink, link
       <div>
         <p>made by</p>
         <div className='flex flex-row gap-1'>
-          <a href={githubLink} target="_blank" className="active:scale-95 outline-slate-500 outline-1 -outline-offset-4"><Github size={iconSize} /></a>
-          <a href={linkedinLink} target="_blank" className="active:scale-95 outline-slate-500 outline-1 -outline-offset-4"><LinkedIn size={iconSize} /></a>
+          <a href={githubLink} target="_blank" className="active:scale-95 outline-slate-600 outline-1 -outline-offset-4"><Github size={iconSize} /></a>
+          <a href={linkedinLink} target="_blank" className="active:scale-95 outline-slate-600 outline-1 -outline-offset-4"><LinkedIn size={iconSize} /></a>
         </div>
       </div>
     </div>
