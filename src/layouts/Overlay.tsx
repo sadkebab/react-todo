@@ -6,11 +6,11 @@ interface LigtboxProps {
   children: ReactNode
   onClose: () => void
 }
-const Lightbox: React.FC<LigtboxProps> = ({ title, children, onClose }) => {
+const Overlay: React.FC<LigtboxProps> = ({ title, children, onClose }) => {
   const stopBubble = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
   }
-  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" onClick={onClose}>
       <div
@@ -27,4 +27,4 @@ const Lightbox: React.FC<LigtboxProps> = ({ title, children, onClose }) => {
   )
 }
 
-export default Lightbox
+export default Overlay

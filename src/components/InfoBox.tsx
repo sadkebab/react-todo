@@ -1,8 +1,7 @@
-import autoAnimate from "@formkit/auto-animate"
-import { Check, CheckCircle, CheckSquare, Clock, Hand, Info, ListChecks, MousePointerClick, Plus, Search, Trash, Trash2, X } from "lucide-react"
+import { CheckSquare, Clock, Hand, Info, ListChecks, MousePointerClick, Plus, Search, Trash, Trash2, X } from "lucide-react"
 import { ReactNode, useState } from "react"
 import { twMerge as t } from "tailwind-merge"
-import Lightbox from "../layouts/Lightbox"
+import Overlay from "../layouts/Overlay"
 
 const InfoBox: React.FC<{ className?: string, children: string }> = ({ className, children }) => {
     const [infoOpen, setInfoOpen] = useState(false)
@@ -18,7 +17,7 @@ const InfoBox: React.FC<{ className?: string, children: string }> = ({ className
                     </button>
                 </div> 
                 ||
-                <Lightbox title="Help Guide" onClose={() => setInfoOpen(false)}>
+                <Overlay title="Help Guide" onClose={() => setInfoOpen(false)}>
                     <ul >
                         <InfoRow icon={<Plus className="w-5" />} border>
                             <p>adds a todo</p>
@@ -54,7 +53,7 @@ const InfoBox: React.FC<{ className?: string, children: string }> = ({ className
                             <p>* the order gets reversed if the list is already sorted</p>
                         </InfoRow>
                     </ul>
-                </Lightbox>
+                </Overlay>
             }
         </div>
     )
