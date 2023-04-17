@@ -20,7 +20,7 @@ const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
 
   const setRefs = useCallback((el: HTMLUListElement) => {
     const animationConfig = {
-      duration: 150,
+      duration: 250,
       easing: 'ease-out',
     }
     setNodeRef(el)
@@ -62,7 +62,7 @@ const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
               .filter(completeFilter)
               .filter(searchFilter)
               .map((todo, index) => <TodoItem key={todo.id} todo={todo} index={index} />)
-              || <li>todos will appear here</li>}
+              || <li className="text-slate-300">todos will appear here</li>}
           </ul>
         </SortableContext>
       </DndContext>

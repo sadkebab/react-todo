@@ -26,7 +26,7 @@ export const TodoToolbar: React.FC = () => {
 
     return (
         <div className="flex flex-col gap-1">
-            <div className='flex flex-col xs:flex-row justify-between gap-2'>
+            <div className='flex flex-col xs:flex-row justify-between gap-2 border-b border-slate-400 pb-2'>
                 <div className="flex flex-row items-center w-full gap-1 bg-slate-600 rounded-sm p-1">
                     <Search stroke="rgb(241,245,249)" className="w-5"/>
                     <input
