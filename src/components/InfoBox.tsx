@@ -20,37 +20,37 @@ const InfoBox: React.FC<{ className?: string, children: string }> = ({ className
                 <Overlay title="Help Guide" onClose={() => setInfoOpen(false)}>
                     <ul >
                         <InfoRow icon={<Plus className="w-5" />} border>
-                            <p>adds a todo</p>
+                            adds a todo
                         </InfoRow>
                         <InfoRow icon={<MousePointerClick className="w-5" />} border>
-                            <p>click on a todo to mark it as completed</p>
+                            click on a todo to mark it as completed
                         </InfoRow>
                         <InfoRow icon={<Hand className="w-5" />} border>
-                            <p>drag and drop to reorder</p>
+                            drag and drop to reorder
                         </InfoRow>
                         <InfoRow icon={<X className="w-5" />} border>
-                            <p>deletes a todo</p>
+                            deletes a todo
                         </InfoRow>
                         <InfoRow icon={<Search className="w-5" />} border>
-                            <p>filters todos by text and allows for exact match with double quotes</p>
+                            filters todos by text and allows for exact match with double quotes
                         </InfoRow>
                         <InfoRow icon={<CheckSquare className="w-5" />} border>
-                            <p>toggles completed todo visibility</p>
+                            hide/show completed todos
                         </InfoRow>
                         <InfoRow icon={<Clock className="w-5" />} border>
-                            <p>sorts todo by order of insertion *</p>
+                            sorts todo by order of insertion *
                         </InfoRow>
                         <InfoRow icon={<ListChecks className="w-5" />} border>
-                            <p> sorts todo by completition status *</p>
+                            sorts todo by completition status *
                         </InfoRow>
                         <InfoRow icon={<Trash className="w-5" />} border>
-                            <p>clears all completed todos</p>
+                            clears all completed todos
                         </InfoRow>
                         <InfoRow icon={<Trash2 className="w-5" />} border>
-                            <p>deletes all todos</p>
+                            deletes all todos
                         </InfoRow>
                         <InfoRow>
-                            <p>* the order gets reversed if the list is already sorted</p>
+                            * the order gets reversed if the list is already sorted
                         </InfoRow>
                     </ul>
                 </Overlay>
