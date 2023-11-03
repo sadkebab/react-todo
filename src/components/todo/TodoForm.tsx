@@ -1,12 +1,14 @@
-import { HTMLProps, KeyboardEventHandler, MouseEventHandler, useCallback, useRef } from "react"
+import { HTMLProps, KeyboardEventHandler, MouseEventHandler, useCallback, useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { add } from "../../app/todoSlice"
 import { twMerge as t } from "tailwind-merge"
 import { Plus } from "lucide-react"
+import { useTooltip } from "../../app/utils"
 
 const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
   const dispatch = useDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
+  const buttonTooltip = useTooltip("Click to add a new todo")
 
   const addTodo = useCallback(() => {
     if (inputRef.current && inputRef.current.value.trim().length > 0) {
@@ -35,6 +37,7 @@ const TodoForm: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
         placeholder='write a todo'
         onKeyDown={onEnter} />
       <button
+        {...buttonTooltip}
         className='w-16 sm:w-24 rounded-sm font-normal outline-slate-600 outline-1 -outline-offset-4 bg-slate-600 active:scale-95 flex justify-center items-center select-none'
         onClick={onAdd}>
           <Plus stroke="rgb(241,245,249)" className="w-full"/>

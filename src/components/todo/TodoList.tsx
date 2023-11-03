@@ -9,6 +9,7 @@ import { DndContext, DragEndEvent, PointerSensor, useDroppable, useSensor, useSe
 import { CSS } from '@dnd-kit/utilities'
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CheckCircle, Circle, X } from "lucide-react"
+import { useTooltip } from "../../app/utils"
 
 const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
   const todos = useSelector((state: RootState) => state.todo.list)
@@ -61,7 +62,7 @@ const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
             {todos.length > 0 && todos
               .filter(completeFilter)
               .filter(searchFilter)
-              .map((todo, index) => <TodoItem key={todo.id} todo={todo} index={index} />)
+              .map((todo, index) => <TodoItem key={todo.id} todo={todo} index={index} highlight={searchText.trim()} />)
               || <li className="text-slate-300">(っ˘̩╭╮˘̩)っ</li>}
           </ul>
         </SortableContext>
@@ -73,9 +74,10 @@ const TodoList: React.FC<HTMLProps<HTMLDivElement>> = ({ className }) => {
 interface TodoItemProps {
   todo: Todo
   index: number
+  highlight?: string
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ todo, index, highlight }) => {
   const dispatch = useDispatch()
 
   const { attributes, listeners, setNodeRef, transform } = useSortable({
@@ -97,6 +99,17 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
   const statusAction: MouseEventHandler = (event) => {
     dispatch(toggleStatus(todo.id))
   }
+  const statusTooltip = useTooltip("Click to toggle completition status")
+  const deleteTooltip = useTooltip("Click to delete todo")
+  const dragTooltip = useTooltip("Drag to reorder todos")
+
+  const highlighted = useCallback((text: string) => {
+    return text.split(new RegExp(`(${highlight})`, 'gi')).map((chunk, i) => (
+      chunk.toLowerCase() === highlight?.toLowerCase()
+        ? <span key={i} className="bg-slate-700 text-slate-100">{chunk}</span>
+        : chunk
+    ))
+  }, [highlight])
 
   return (
     <li
@@ -108,18 +121,20 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index }) => {
       onClick={statusAction}
       {...attributes}
       {...listeners}
+      {...dragTooltip}
     >
 
       <div className="flex justify-between">
-        {todo.status === 'completed' ? <CheckCircle className="w-5" /> : <Circle className="w-5" />}
+        {todo.status === 'completed' ? <CheckCircle className="w-5 cursor-pointer" {...statusTooltip} /> : <Circle className="w-5 cursor-pointer" {...statusTooltip} />}
         <button
           className='text-center active:scale-95 cursor-pointer outline-slate-600 outline-1 -outline-offset-4'
+          {...deleteTooltip}
           onClick={deleteAction}>
-          <X className="w-5"/>
+          <X className="w-5" />
         </button>
       </div>
       <div className="w-full break-words">
-        <p>{todo.text}</p>
+        <p>{highlighted(todo.text)}</p>
       </div>
     </li>
   )

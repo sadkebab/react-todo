@@ -1,3 +1,4 @@
+import { Tooltip } from 'react-tooltip'
 import Credits from './components/Credits'
 import InfoBox from './components/InfoBox'
 import TodoForm from './components/todo/TodoForm'
@@ -19,9 +20,14 @@ const App = () => {
         <TodoForm />
         <TodoList className='mt-2' />
       </div>
-      <div className='mt-3 w-full sm:w-[600px]'>
+      {/* <div className='mt-3 w-full sm:w-[600px] slate'>
         <InfoBox>how to use</InfoBox>
-      </div>
+      </div> */}
+      <Tooltip id='tooltip' style={{
+        backgroundColor: 'rgb(30 41 59)',
+        borderRadius: '4px',
+        boxShadow: '0 0 1px 1px rgba(32, 32, 32, 0.3)',
+      }} />
     </div>
   )
 }
